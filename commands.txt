@@ -12,3 +12,6 @@ https://pughtml.com/
 
 git commit -m 'public/css/main.css'
 git push
+git commit -a
+git status
+git commit -m 'routes/logout.js'
