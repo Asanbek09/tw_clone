@@ -8,7 +8,14 @@ const Post = require('../../models/PostSchema');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.get("/", (req, res, next) => {
-    
+    Post.find()
+    .then((results) => {
+      return res.status(200).send(results);
+    })
+    .catch(error => {
+      console.log(error);
+      return res.sendStatus(400);
+    })
 })
 
 router.post("/", async (req, res, next) => {
