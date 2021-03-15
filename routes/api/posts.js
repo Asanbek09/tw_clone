@@ -44,4 +44,17 @@ router.post("/", async (req, res, next) => {
   })
 })
 
+router.put("/:id/like", async (req, res, next) => {
+  var postId = req.params.id;
+  var userId = req.session.user._id;
+
+  var isLiked = req.session.user.likes && req.session.user.likes.includes(postId);
+
+  // Insert user like
+  User.findByIdAndUpdate(userId, { $pull: { likes: postId } })
+  // Insert post like
+
+  res.status(200).send("Google")
+})
+
 module.exports = router;
