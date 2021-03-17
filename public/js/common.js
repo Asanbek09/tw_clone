@@ -43,6 +43,10 @@ $("#replyModal").on("show.bs.modal", (event) => {
   })
 })
 
+$("#replyModal").on("hidden.bs.modal", () => {
+  $("#originalPostContainer").html("");
+})
+
 // Клик для обработки кнопки LikeButton
 $(document).on("click", ".likeButton", (event) => {
   var button = $(event.target);
