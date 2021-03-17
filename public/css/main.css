@@ -65,7 +65,8 @@ button {
   color: var(--greyButtonText);
 }
 
-button i, button span {
+button i,
+button span {
   pointer-events: none;
 }
 
@@ -95,6 +96,12 @@ button i, button span {
   padding: var(--spacing);
   border-bottom: 10px solid var(--lightGrey);
   flex-shrink: 0;
+}
+
+.modal .postFormContainer {
+  border: none;
+  padding: 0;
+  padding-top: var(--spacing);
 }
 
 .userImageContainer {
