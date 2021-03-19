@@ -35,7 +35,7 @@ const postsApiRoute = require('./routes/api/posts');
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 app.use("/logout", logoutRoute);
-app.use("/posts", postRoute);
+app.use("/posts", middleware.requireLogin, postRoute);
 //url для api
 app.use("/api/posts", postsApiRoute);
 
