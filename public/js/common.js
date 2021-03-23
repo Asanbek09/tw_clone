@@ -45,6 +45,7 @@ $("#submitPostButton, #submitReplyButton").click(() => {
   })
 })
 
+//replyModal
 $("#replyModal").on("show.bs.modal", (event) => {
   var button = $(event.relatedTarget);
   var postId = getPostIdFromElement(button);
@@ -59,6 +60,32 @@ $("#replyModal").on("hidden.bs.modal", () => {
   $("#originalPostContainer").html("");
 })
 
+// deletePostModal для удаления поста
+$("#deletePostModal").on("show.bs.modal", (event) => {
+  var button = $(event.relatedTarget);
+  var postId = getPostIdFromElement(button);
+  $("#deletePostButton").attr("data-id", postId);
+
+})
+
+// deletePostButton для подтверждения удаления поста
+$("#deletePostButton").click((event) => {
+  var postId = $(event.target).data("id");
+
+  $.ajax({
+      url: `/api/posts/${postId}`,
+      type: "DELETE",
+      success: (data, status, xhr) => {
+
+          if(xhr.status != 202) {
+              alert("could not delete post");
+              return;
+          }
+          
+          location.reload();
+      }
+  })
+})
 // Клик для обработки кнопки LikeButton
 $(document).on("click", ".likeButton", (event) => {
   var button = $(event.target);
