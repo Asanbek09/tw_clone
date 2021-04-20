@@ -9,7 +9,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // вывод всех постов с таблицы
 router.get("/", async (req, res, next) => {
-  var results = await getPosts({});
+
+  var searchObj = req.query;
+
+  if(searchObj.isReply !== undefined) {
+    var isReply = searchObj.isReply == "true";
+    searchObj.replyTo = { $exists: isReply };
+    delete searchObj.isReply;
+    console.log(searchObj)
+  }
+
+  var results = await getPosts(searchObj);
   return res.status(200).send(results);
 })
 // выбор одного поста
